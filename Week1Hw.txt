@@ -1,0 +1,1 @@
+The difference between GUI and CLI is that GUI uses visual elements such as icons, buttons, and windows in order to interact with the computer system. As for CLI you type in commands in order to interact with the system. You interact with these both completely different but it'll achieve the same goal.
