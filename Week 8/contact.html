@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function validateForm() {
+            let isValid = true;
+            let name = document.getElementById("name");
+            let email = document.getElementById("email");
+            let terms = document.getElementById("terms");
+
+            if (name.value.trim() === "") {
+                name.style.borderColor = "red";
+                name.focus();
+                isValid = false;
+            } else {
+                name.style.borderColor = "";
+            }
+
+            if (email.value.trim() === "") {
+                email.style.borderColor = "red";
+                email.focus();
+                isValid = false;
+            } else {
+                email.style.borderColor = "";
+            }
+
+            if (!terms.checked) {
+                alert("You must agree to the terms before submitting.");
+                terms.focus();
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</head>
+<body>
+    <h1 id="contact-header">Contact Us</h1>
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="games.html">Games</a> |
+        <a href="contact.html">Contact</a>
+    </nav>
+    <h2>Get in Touch</h2>
+    <form action="#" method="post" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <input type="checkbox" id="terms" name="terms">
+        <label for="terms">I agree to the terms and conditions</label><br><br>
+
+        <input type="submit" value="Send">
+    </form>
+</body>
+</html>
