@@ -5,32 +5,48 @@
     <script>
         function validateForm() {
             let isValid = true;
+            let firstInvalidField = null;
+            
             let name = document.getElementById("name");
             let email = document.getElementById("email");
             let terms = document.getElementById("terms");
-
+            
+            let nameError = document.getElementById("nameError");
+            let emailError = document.getElementById("emailError");
+            let termsError = document.getElementById("termsError");
+            
+            nameError.textContent = "";
+            emailError.textContent = "";
+            termsError.textContent = "";
+            
             if (name.value.trim() === "") {
                 name.style.borderColor = "red";
-                name.focus();
+                nameError.textContent = "Name is required";
+                if (!firstInvalidField) firstInvalidField = name;
                 isValid = false;
             } else {
                 name.style.borderColor = "";
             }
-
+            
             if (email.value.trim() === "") {
                 email.style.borderColor = "red";
-                email.focus();
+                emailError.textContent = "Email is required";
+                if (!firstInvalidField) firstInvalidField = email;
                 isValid = false;
             } else {
                 email.style.borderColor = "";
             }
-
+            
             if (!terms.checked) {
-                alert("You must agree to the terms before submitting.");
-                terms.focus();
+                termsError.textContent = "You must agree to the terms";
+                if (!firstInvalidField) firstInvalidField = terms;
                 isValid = false;
             }
-
+            
+            if (firstInvalidField) {
+                firstInvalidField.focus();
+            }
+            
             return isValid;
         }
     </script>
@@ -45,14 +61,20 @@
     <h2>Get in Touch</h2>
     <form action="#" method="post" onsubmit="return validateForm()">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name"><br><br>
-
+        <input type="text" id="name" name="name">
+        <span id="nameError" style="color: red;"></span>
+        <br><br>
+        
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email"><br><br>
-
+        <input type="email" id="email" name="email">
+        <span id="emailError" style="color: red;"></span>
+        <br><br>
+        
         <input type="checkbox" id="terms" name="terms">
-        <label for="terms">I agree to the terms and conditions</label><br><br>
-
+        <label for="terms">I agree to the terms and conditions</label>
+        <span id="termsError" style="color: red;"></span>
+        <br><br>
+        
         <input type="submit" value="Send">
     </form>
 </body>
